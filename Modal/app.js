@@ -1,15 +1,15 @@
-// select modal-btn,modal-overlay,close-btn
-// listen for click events on modal-btn and close-btn
-// when user clicks modal-btn add .open-modal to modal-overlay
-// when user clicks close-btn remove .open-modal from modal-overlay
+const express = require("express");
+const path = require("path");
+const app = express();
+const port = process.env.PORT || 4000;
 
-const modalBtn = document.querySelector(".modal-btn");
-const modal = document.querySelector(".modal-overlay");
-const closeBtn = document.querySelector(".close-btn");
+app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, "/public")));
 
-modalBtn.addEventListener("click", function () {
-  modal.classList.add("open-modal");
+app.get("/", (req, res) => {
+    res.render("index.ejs");
 });
-closeBtn.addEventListener("click", function () {
-  modal.classList.remove("open-modal");
+
+app.listen(port, () => {
+    console.log("Server is up on port " + port);
 });
